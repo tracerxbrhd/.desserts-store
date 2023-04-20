@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %} | DessertStore</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="logo"><a href="{% url 'core:index' %}">DessertStore</a></div>
+        <nav>
+          <ul>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'itemsManager:new' %}">New Item</a></li>
+            <li><a href="#">Browse</a></li>
+            {% else %}
+            {% endif %}
+          </ul>    
+        </nav>
+        <div class="right-menu">
+          <a href="#"><img src="{% static 'img/basket.svg' %}" alt="Cart" class="cart-icon"></a>
+          {% if request.user.is_authenticated %}
+          <a href="#"><img src="{% static 'img/profile.svg' %}" alt="Profile" class="cart-icon"></a>
+          <a href="#"><img src="{% static 'img/inbox.svg' %}" alt="Inbox" class="cart-icon"></a>
+          {% else %}
+          <a href="{% url 'core:signup' %}"><button class="signup-btn">Sign Up</button></a>
+          <a href="{% url 'core:login' %}"><button class="login-btn">Log In</button></a>
+          {% endif %}
+        </div>
+      </header>      
+      {% block content %}{% endblock content %}
+      <footer class="footer">
+          <div>
+              Just a future footer.
+          </div>
+      </footer>
+    </div>
+</body>
+</html>

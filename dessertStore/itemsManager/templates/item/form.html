@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} New Item {% endblock title %}</title>
+</head>
+<body>
+    {% block content %}
+    <div class="new-item-form-container">
+        <form action="." method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% comment %} {{ form.as_p }} {% endcomment %}
+
+            <div class="form-group">
+                <label for="category">Категория:</label>
+                {{ form.category }}
+            </div>
+            <div class="form-group">
+                <label for="name">Название товара:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                <label for="price">Цена:</label>
+                {{ form.price }}
+            </div>
+            <div class="form-group">
+                <label for="photo">Загрузка фотографии:</label>
+                {{ form.image }}
+            </div>
+            <div>
+                <label for="instock">В наличии?</label>
+                {{ form.instock }}
+            </div>
+
+            {% if form.errors or form.non_field_errors %}
+                <div>
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+
+                    {{ form.non_fiel_errors }}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">Добавить товар</button>
+        </form>
+    </div>      
+    {% endblock content %}
+</body>
+</html>
