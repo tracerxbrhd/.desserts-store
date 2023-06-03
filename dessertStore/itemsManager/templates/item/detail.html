@@ -19,8 +19,12 @@
             <button class="edit-item-btn">Edit</button>
           </a>
         {% else %}
+        <a href="">
           <button class="add-to-cart-btn">Add to Cart</button>
+        </a>
+        <a href="{% url 'chat:new' item.id %}">
           <button class="contact-seller-btn">Contact Seller</button>
+        </a>
         {% endif %}
       </div>
     </div>

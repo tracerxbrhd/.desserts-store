@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "core",
     "itemsManager",
     "dashboard",
+    "chat",
 ]
 
 MIDDLEWARE = [

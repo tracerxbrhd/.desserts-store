@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inbox{% endblock title %}
+
+{% block content %}
+    <div>
+        <h1>Inbox</h1>
+    </div>
+    <div>
+        {% for chat in chats%}
+            <a href="{% url 'chat:detail' chat.id %}">
+                <div class="conteiner">
+                    <div class="img">
+                        <img src="{{ chat.item.image.url }}" alt="#">
+                    </div>
+
+                    <div class="member">
+                        {% for member in chat.members.all %}
+                            {% if member != request.user %}
+                                <p class="membername"><strong>{{ member.username }}</strong> | {{ chat.modified_at }}</p>
+                                <p>{{ chat.item.name }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock content %}
