@@ -3,10 +3,11 @@
 {% block title %}Chat{% endblock title %}
 
 {% block content %}
-    <div>
-        <h1>Chat</h1>
+<div class="chat-container">
+    <div class="chat-header">
+        <h1 class="chat-header-h1">Chat</h1>
     </div>
-    <div>
+    <div class="chat-content">
         {% for message in chat.messages.all %}
             <div class="{% if message.created_by == request.user %} yourmsg {% else %} notyourmsg {% endif %}">
                 <div>
@@ -17,11 +18,12 @@
         {% endfor %}
     </div>
 
-    <form action="." method="post">
+    <form action="." method="post" class="chat-form">
         {% csrf_token %}
 
         {{ form.as_p }}
 
         <button class="sign-up-submit" type="submit">Ответить</button>
     </form>
+</div>
 {% endblock content %}

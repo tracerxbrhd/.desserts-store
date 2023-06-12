@@ -8,17 +8,17 @@
     </div>
     <div>
         {% for chat in chats%}
-            <a href="{% url 'chat:detail' chat.id %}">
-                <div class="conteiner">
+            <a href="{% url 'chat:detail' chat.id %}" class="chat-wrapper">
+                <div class="chat-conteiner">
                     <div class="img">
-                        <img src="{{ chat.item.image.url }}" alt="#">
+                        <img src="{{ chat.item.image.url }}" alt="#" class="user-photo">
                     </div>
 
                     <div class="member">
                         {% for member in chat.members.all %}
                             {% if member != request.user %}
-                                <p class="membername"><strong>{{ member.username }}</strong> | {{ chat.modified_at }}</p>
-                                <p>{{ chat.item.name }}</p>
+                                <p class="username"><strong>{{ member.username }}</strong> | {{ chat.modified_at }}</p>
+                                <p class="chat-name">{{ chat.item.name }}</p>
                             {% endif %}
                         {% endfor %}
                     </div>

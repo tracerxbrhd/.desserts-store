@@ -10,17 +10,36 @@
 </head>
 <body>
     {% block content %}
-
-      <div class="products">
-        {% for item in items %}
-          <div class="product-card">
-            <a href="{% url 'itemsManager:detail' item.id %}"><img src="{{ item.image.url }}" alt="Product Image"></a>
-            <a href="{% url 'itemsManager:detail' item.id %}"><h3>{{ item.name }}</h3></a>
-            <div class="price">{{ item.price }} Руб</div>
-            <button class="add-to-cart-btn">Добавить в корзину</button>
-          </div>
-        {% endfor %}
-      </div>
+        <div class="dashboard-container">   
+            <div class="profile">
+            <img src="{% static 'img/pfp.svg' %}" alt="Profile Picture">
+            <h2>{{ request.user }}</h2>
+            {% if request.user.is_superuser %}
+            <p>Role: <strong>Admin</strong></p>
+            {% else %}
+            <p>Role: <strong>User</strong></p>
+            {% endif %}
+            </div>
+            <div class="buttons">
+            <a href="{% url 'chat:inbox' %}"><button>Inbox</button></a>
+            <a href="{% url 'dashboard:logout' %}"><button>Logout</button></a>
+            </div>
+        </div>
+        {% if request.user.is_superuser%}
+        <div class="products-block">
+            <h2>Товары:</h2>
+        </div>
+        <div class="products">
+            {% for item in items %}
+                <div class="product-card">
+                    <a href="{% url 'itemsManager:detail' item.id %}"><img src="{{ item.image.url }}" alt="Product Image"></a>
+                    <a href="{% url 'itemsManager:detail' item.id %}"><h3>{{ item.name }}</h3></a>
+                    <div class="price">{{ item.price }} Руб</div>
+                    <button class="add-to-cart-btn">Подробнее</button>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     {% endblock content %}
 </body>
 </html>

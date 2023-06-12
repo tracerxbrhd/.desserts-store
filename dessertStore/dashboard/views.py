@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth import logout
 from itemsManager.models import Item
 from django.contrib.auth.decorators import login_required
 

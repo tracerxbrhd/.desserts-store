@@ -3,29 +3,30 @@
 {% block title %}New Chat{% endblock title %}
 
 {% block content %}
-    <h1>
+<div class="new-chat-container">
+    <h1 class="new-chat">
         New Chat
     </h1>
 
-    <div class="new-item-form-container">
+    <div class="new-chat-form">
         <form action="." method="POST">
             {% csrf_token %}
 
-            <div class="form-group">
+            <div class="new-chat-form-group">
                 {{ form.as_p }}
             </div>
 
             {% if form.errors or form.non_field_errors %}
-                <div>
+                <div class="form-errors">
                     {% for field in form %}
                         {{ field.errors }}
                     {% endfor %}
 
-                    {{ form.non_fiel_errors }}
+                    {{ form.non_field_errors }}
                 </div>
             {% endif %}
 
-            <button type="submit" class="btn btn-primary">Отправить</button>
+            <button type="submit" class="new-chat-btn">Отправить</button>
         </form>
-
+</div>
 {% endblock content %}
