@@ -14,7 +14,9 @@ SECRET_KEY = "django-insecure-n8k!e7talzqgkvmxr^9f3g7v9y@rh281h^z_4=f_)tho*k#whg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'dessertstore.onrender.com',
+]
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
